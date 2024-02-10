@@ -22,7 +22,6 @@ const Admin5UserUpdates = (props) => {
     const handleChange = event => {
             setEditForm({ ...editForm, [event.target.name]: event.target.value })
         }
-      console.log(editForm)
 
       const handleSubmit = event => {
         event.preventDefault()
