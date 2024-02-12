@@ -3,12 +3,16 @@ import ReviewAndRating from "../components/ReviewAndRating";
 import DisplayReviews from '../components/DisplayReviews';
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const DisplayBook=()=> {
     const location = useLocation();
     const navigate = useNavigate();
     const obj = location.state[0];
-    const userId = location.state[1].userId;
+    const token = localStorage.getItem('accessToken')
+    const decoded = jwtDecode(token)
+   
+    const userId = decoded.sub; 
     let available = "";
     const book = obj.book
     const [user, setUser] = useState("");

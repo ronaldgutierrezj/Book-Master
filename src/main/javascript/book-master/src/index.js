@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-//import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 
@@ -51,11 +51,11 @@ export default function App() {
 ////////////////////////////////
 
 const isAdmin = () => {
-  /*const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('accessToken');
   if (token) {
     const decoded = jwtDecode(token);
     return decoded.roles.includes('ADMIN');
-  }*/
+  }
   return false;
 };
 

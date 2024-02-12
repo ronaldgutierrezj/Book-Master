@@ -34,7 +34,7 @@ const Admin1Home = () => {
                     </div>
                 )
             })
-
+            console.log(localStorage.getItem('accessToken'))
     return (
         <>
         <div className="container mt-3">

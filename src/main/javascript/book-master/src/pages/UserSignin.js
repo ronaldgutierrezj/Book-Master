@@ -29,7 +29,8 @@ function UserSignIn() {
 
            const accessToken = response.data.token;
            localStorage.setItem('accessToken', accessToken);
-           console.log(localStorage);
+           console.log(localStorage)
+        
 
         } catch (error) {
             if (axios.isCancel(error)) {

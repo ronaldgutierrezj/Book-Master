@@ -3,11 +3,15 @@ import { useLocation } from "react-router-dom";
 import SideNavBar from "../components/SideNavBar";
 import MyShelf from "../components/MyShelfAvailable";
 import UserRecommendationListing from "../components/UserRecommendationListing";
+import { jwtDecode } from "jwt-decode";
 
 
 const UserDashboard = () => {
   const location = useLocation();
-  const userId = location.state; 
+  const token = localStorage.getItem('accessToken')
+  const decoded = jwtDecode(token)
+ 
+  const userId = decoded.sub; 
 
   return (
     <div className="container-fluid">
