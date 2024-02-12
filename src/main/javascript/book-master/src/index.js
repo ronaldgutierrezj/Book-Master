@@ -283,6 +283,7 @@ useEffect(() => {getEvents()}, []);
 
           <Route path="added_success" element={<AddedBookToDBSuccess />} />
           <Route path="displayBook" element={<DisplayBook />} />
+          <Route path="displayBook/:id" element={<DisplayBook books = {books}/>} />
           <Route path="event_form" element={<EventsForm /> } />
           <Route path="library_search" element={<LibrarySearch /> } />
           <Route path="*" element={<NoPage />} />

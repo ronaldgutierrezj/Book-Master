@@ -1,20 +1,25 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import ReviewAndRating from "../components/ReviewAndRating";
 import DisplayReviews from '../components/DisplayReviews';
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-const DisplayBook=()=> {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const obj = location.state[0];
+const DisplayBook=(props)=> {
+
+    const { id } = useParams()
+    console.log(id)
+    const books = props.books
+    console.log(books)
+    const book = books.find(p => p.id === parseInt(id))
+    console.log(book)
+    
     const token = localStorage.getItem('accessToken')
     const decoded = jwtDecode(token)
    
     const userId = decoded.sub; 
     let available = "";
-    const book = obj.book
+   
     const [user, setUser] = useState("");
     const loanDateOut = new Date()
     function calcLoanDateOut(date) {
@@ -81,8 +86,8 @@ const DisplayBook=()=> {
 
     }
 
-    if(obj.book.available_quantity > 0){
-        available = "Copies Available: " + obj.book.available_quantity;
+    if(book.available_quantity > 0){
+        available = "Copies Available: " + book.available_quantity;
     }
     else{
         available = "All Copies Are Currently Checked Out";
@@ -173,7 +178,7 @@ const DisplayBook=()=> {
                     <td>
                         <table>
                             <tr>
-                                <img src={obj.book.thumbnail} width="300" height="400"/>
+                                <img src={book.thumbnail} width="300" height="400"/>
                             </tr>
                         </table>
                     </td>
@@ -182,7 +187,7 @@ const DisplayBook=()=> {
                             style={{marginRight: 14 + 'em'}, {display: (show ? 'block' : 'none')}}>Recommend Book</button>
                         {/* <button style={{marginRight: 14 + 'em'}} onClick={saveForLater}>Save For Later</button> */}
 
-                        {obj.book.available_quantity > 0 ? (
+                        {book.available_quantity > 0 ? (
                             <>
                             <button style={{marginRight: 14 + 'em'}} onClick={handleCheckout}>Check Book Out</button>
                             {bookCheckout && (<p className='text-success'>Book Successfully Checked out!</p>)}
@@ -196,19 +201,19 @@ const DisplayBook=()=> {
                         <br></br>
                         <table>
                             <tr>
-                                <h2>Title: {obj.book.title}</h2>
+                                <h2>Title: {book.title}</h2>
                             </tr>
                             <tr>
-                                <h3>Author: {obj.book.author}</h3>
+                                <h3>Author: {book.author}</h3>
                             </tr>
                             <tr>
-                                <h5>Genre: {obj.book.genre}</h5>
+                                <h5>Genre: {book.genre}</h5>
                             </tr>
                             <tr>
                                 <h5>{available}</h5>
                             </tr>
                             <tr>
-                                <h6>{obj.book.description}</h6>
+                                <h6>{book.description}</h6>
                             </tr>
                         </table>
                     </td>
@@ -221,7 +226,7 @@ const DisplayBook=()=> {
         </div>
 
         <div className='container-fluid pb-5 mb-5'>
-            <DisplayReviews results={obj}/>
+            {/* <DisplayReviews results={obj}/> */}
         </div>
 
     </>

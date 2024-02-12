@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MyShelf = () => {
   const [books, setBooks] = useState([]);
-  const navigate = useNavigate();
+ 
 
   useEffect(() => {
     // Fetch data from your Spring Boot backend
@@ -25,11 +25,10 @@ const MyShelf = () => {
             <tr>
               {availableBooks.slice(0, 7).map(book => (
                 <td key={book.id}>
-                  <img
+                 <Link to={`/displaybook/${book.id}`}> <img
                     src={book.thumbnail}
                     alt={book.title}
-                    onClick={() => navigate(`/displaybook`, { state: { book } })}
-                  />
+                  /></Link>
                   <p>{book.title}</p>
                 </td>
               ))}
