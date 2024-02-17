@@ -285,7 +285,7 @@ useEffect(() => {getEvents()}, []);
           <Route path="displayBook" element={<DisplayBook />} />
           <Route path="displayBook/:id" element={<DisplayBook books = {books}/>} />
           <Route path="event_form" element={<EventsForm /> } />
-          <Route path="library_search" element={<LibrarySearch /> } />
+          <Route path="library_search" element={<LibrarySearch books = {books}/> } />
           <Route path="*" element={<NoPage />} />
           <Route path="remove_search" element={<RemoveSearch />} />
           <Route path="remove_success" element={<RemoveBookSuccess />} />

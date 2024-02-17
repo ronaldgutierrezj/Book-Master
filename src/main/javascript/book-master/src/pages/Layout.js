@@ -75,7 +75,7 @@ const Layout = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        navigate("/library_search", {state: [{keyword},{user}]});
+        navigate("/library_search", {state: [{keyword}]});
     }
 
     return (
@@ -91,7 +91,7 @@ const Layout = () => {
                     </div>
 
                     <div className="nav-item">
-                        <Link to="library_search" className="nav-link" state={[{keyword:null},{user:user}]}>Search Library</Link>
+                        <Link to="library_search" className="nav-link">Search Library</Link>
                     </div>
 
                     {/* will use quick search to search all fields with keyword and go to searchResults.js page to display results */}
